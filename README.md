@@ -22,4 +22,4 @@ mix deps.get
 
 ## Documentation
 
-Documentation can be found on [HexDocs](https://hexdocs.pm/multitool/api-reference.html){:target="_blank"}
+Documentation can be found on [HexDocs](https://hexdocs.pm/multitool/api-reference.html)
