@@ -79,9 +79,28 @@ defmodule Multitool.Numbers.Primes do
       n == 1 -> [2]
       n == 2 -> [2, 3]
       n == 3 -> [2, 3, 5]
-      true -> Stream.iterate(2, &(&1 + 1)) |> Stream.filter(&prime?/1) |> Enum.take(n)
+      true -> primes() |> Enum.take(n)
     end
   end
+
+  @doc """
+  Generates a Stream of prime numbers, starting at the first prime number, two.
+
+  This operation will produce prime numbers until a terminating condition is reached
+
+  ## Examples
+
+      iex> primes() |> Enum.take(0) 
+      []
+
+      iex> primes() |> Enum.take(1)
+      [2]
+
+      iex> primes() |> Enum.take(10)
+      [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+  """
+  @doc since: "1.2.0"    
+  def primes(), do: Stream.iterate(2, &(&1 + 1)) |> Stream.filter(&prime?/1)
 
   @doc """
   Returns the nth prime number, where the first prime number is two.

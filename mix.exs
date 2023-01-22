@@ -7,8 +7,8 @@ defmodule Multitool.MixProject do
       description: "A collection of functions useful for programming challenges and beyond",
       source_url: "https://github.com/tajacks/elixir-multitool",
       homepage_url: "https://github.com/tajacks/elixir-multitool",
-      version: "0.1.0",
-      elixir: "~> 1.14",
+      version: "0.2.0",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package()
