@@ -18,4 +18,16 @@ defmodule Multitool.Numbers.SequenceTest do
     assert collatz_len(99) === 26
     assert collatz_len(837_799) === 525
   end
+
+  test "can get n terms of Fibonacci" do
+    assert fibonacci(5) === [1, 1, 2, 3, 5]
+    assert fibonacci(0) === []
+    assert fibonacci(-5) === []
+  end
+
+  test "can get nth term of Fibonacci" do
+    assert nth_fibonacci(64) === 10_610_209_857_723
+    assert nth_fibonacci(-5) === nil
+    assert nth_fibonacci(0) === 0
+  end
 end
