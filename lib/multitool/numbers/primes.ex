@@ -19,7 +19,7 @@ defmodule Multitool.Numbers.Primes do
       n: Integer to check for primality
 
   ## Examples
-      iec
+
       iex> prime?(-1)
       false
 
@@ -99,8 +99,138 @@ defmodule Multitool.Numbers.Primes do
       iex> primes() |> Enum.take(10)
       [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
   """
-  @doc since: "1.2.0"    
+  @doc since: "1.2.0"
   def primes(), do: Stream.iterate(2, &(&1 + 1)) |> Stream.filter(&prime?/1)
+
+  def primes_before(n) when is_integer(n) and n <= 2, do: []
+
+  @doc """
+  Returns a list of prime numbers that occur before the given integer `n`
+
+  An empty list is returned when n is less than three
+
+  ## Parameters
+
+      n: An integer to retrieve preceding primes of
+
+  ## Examples
+
+      iex> primes_before(3)
+      [2]
+
+      iex> primes_before(2)
+      []
+
+      iex> primes_before(10)
+      [7, 5, 3, 2]
+  """
+  @doc since: "1.3.0"
+  def primes_before(n) when is_integer(n) do
+    Stream.unfold(n - 1, fn x ->
+      cond do
+        x < 2 -> nil
+        true -> {x, x - 1}
+      end
+    end)
+    |> Stream.filter(&prime?/1)
+    |> Enum.to_list()
+  end
+
+  def primes_before(c, _n) when is_integer(c) and c <= 2, do: []
+
+  @doc """
+  Returns a list of `n` primes that occur before, and not including, `c`
+
+
+  ## Parameters
+
+      c: Integer. The number to generate primes before
+      n: Integer. The number of primes to generate
+
+  ## Examples
+
+      iex> primes_before(5, 2)
+      [3, 2]
+
+      iex> primes_before(2)
+      []
+  """
+  @doc since: "1.3.0"
+  def primes_before(c, n) when is_integer(n) and is_integer(c),
+    do: primes_before(c) |> Enum.take(n)
+
+  def previous_prime(c) when is_integer(c) and c < 3, do: nil
+
+  def previous_prime(c) when is_integer(c), do: primes_before(c, 1) |> hd()
+
+  @doc """
+  Returns a Stream that returns prime numbers that occur after the given number
+
+  This operation will produce prime numbers until a terminating condition is reached
+
+  ## Parameters
+
+       n: An integer to generate primes after
+
+  ## Examples
+
+      iex> primes_after(2) |> Enum.take(1)
+      [3]
+
+      iex> primes_after(0) |> Enum.take(2)
+      [2, 3]
+  """
+  @doc since: "1.3.0"
+  def primes_after(n) when is_integer(n) do
+    start =
+      if n < 1 do
+        1
+      else
+        n + 1
+      end
+
+    Stream.iterate(start, &(&1 + 1))
+    |> Stream.filter(&prime?/1)
+  end
+
+  @doc """
+  Returns a list of `n` primes that occur after, and not including, `c`
+
+
+  ## Parameters
+
+      c: Integer. The number to generate primes after
+      n: Integer. The number of primes to generate
+
+  ## Examples
+
+      iex> primes_after(2, 1)
+      [3]
+
+      iex> primes_after(0, 2)
+      [2, 3]
+  """
+  @doc since: "1.3.0"
+  def primes_after(c, n) when is_integer(n) and is_integer(c), do: primes_after(c) |> Enum.take(n)
+
+  @doc """
+  Returns the next prime number to follow `c`
+
+
+  ## Parameters
+
+      c: Integer. The number to get the next prime after
+
+  ## Examples
+
+      iex> next_prime(0)
+      2
+
+      iex> next_prime(59651)
+      59659 
+  """
+  @doc since: "1.3.0"
+  def next_prime(c), do: primes_after(c, 1) |> hd()
 
   @doc """
   Returns the nth prime number, where the first prime number is two.
