@@ -150,7 +150,7 @@ defmodule Multitool.Numbers.Factors do
 
   def sum_type?(n, :abundant) when is_integer(n) and n > 28123, do: true
 
-  def sum_type?(n, _sum_type) when is_integer(n) and n < 1, do: false
+  def sum_type?(n, _sum_type) when is_integer(n) and n < 2, do: false
 
   @doc """
   Given an integer `n` and `sum_type`, returns true if `n` can be represented as the sum of two numbers of the given type
