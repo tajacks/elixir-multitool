@@ -1,4 +1,4 @@
-defmodule Multitool.Numbers.SequenceTest do
+defmodule Multitool.NumbersTest.SequenceTest do
   use ExUnit.Case, async: true
 
   doctest Multitool.Numbers.Sequence, import: true
