@@ -4,6 +4,8 @@ defmodule Multitool.NumbersTest.TriangularTest do
 
   doctest Multitool.Numbers.Triangular, import: true
 
+  import Multitool.Numbers.Triangular
+
   test "nth triangle number where n is less than zero is zero" do
     assert nth_triangle_num(-1) == 0
   end
