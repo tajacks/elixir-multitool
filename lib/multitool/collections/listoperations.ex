@@ -5,7 +5,7 @@ defmodule Multitool.Collections.ListOperations do
   @moduledoc since: "0.3.1"
 
   def permutations([]), do: [[]]
-  
+
   @doc """
   Returns a List containing all permutations of the given List
 
@@ -23,7 +23,8 @@ defmodule Multitool.Collections.ListOperations do
       [[]]
   """
   @doc since: "0.3.1"
-  def permutations(list), do: for elem <- list, rest <- permutations(list--[elem]), do: [elem|rest]
+  def permutations(list),
+    do: for(elem <- list, rest <- permutations(list -- [elem]), do: [elem | rest])
 
   def shift([]), do: []
 
@@ -48,6 +49,6 @@ defmodule Multitool.Collections.ListOperations do
       [1]
   """
   @doc since: "0.3.1"
-  def shift(list) when is_list(list), do: Enum.reverse(list) |> then(fn [head | tail] -> [head | Enum.reverse(tail)] end)
-
+  def shift(list) when is_list(list),
+    do: Enum.reverse(list) |> then(fn [head | tail] -> [head | Enum.reverse(tail)] end)
 end
