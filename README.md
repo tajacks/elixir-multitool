@@ -9,7 +9,7 @@ This package can be installed by adding `multitool` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:multitool, "~> 0.1.0"}
+    {:multitool, "~> 0.3.1"}
   ]
 end
 ```
