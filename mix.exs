@@ -7,7 +7,7 @@ defmodule Multitool.MixProject do
       description: "A collection of functions useful for programming challenges and beyond",
       source_url: "https://github.com/tajacks/elixir-multitool",
       homepage_url: "https://github.com/tajacks/elixir-multitool",
-      version: "0.3.1",
+      version: "0.3.2",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -23,7 +23,8 @@ defmodule Multitool.MixProject do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -6,13 +6,13 @@ defmodule Multitool.NumbersTest do
   import Multitool.Numbers
 
   test "can remove left most digit from positive integer" do
-    assert trim_left(45679) == 5679
+    assert trim_left(45_679) == 5679
     assert trim_left(100) == 0
-    assert trim_left(599_999) == 99999
+    assert trim_left(599_999) == 99_999
   end
 
   test "can remove right most digit from integer" do
-    assert trim_right(45679) == 4567
+    assert trim_right(45_679) == 4567
     assert trim_right(10) == 1
     assert trim_right(1) == 0
   end

@@ -115,10 +115,10 @@ defmodule Multitool.Numbers.Factors do
     |> Enum.to_list()
   end
 
-  def sums_in(%Range{} = range, :abundant) when range.first > 28123, do: Enum.to_list(range)
+  def sums_in(%Range{} = range, :abundant) when range.first > 28_123, do: Enum.to_list(range)
 
-  def sums_in(%Range{} = range, :abundant) when range.first < 28123 and range.last >= 28123 do
-    [sums_in(range.first..28122, :abundant) | Enum.to_list(28123..range.last)] |> List.flatten()
+  def sums_in(%Range{} = range, :abundant) when range.first < 28_123 and range.last >= 28_123 do
+    [sums_in(range.first..28_122, :abundant) | Enum.to_list(28_123..range.last)] |> List.flatten()
   end
 
   @doc """
@@ -148,7 +148,7 @@ defmodule Multitool.Numbers.Factors do
     |> Enum.to_list()
   end
 
-  def sum_type?(n, :abundant) when is_integer(n) and n > 28123, do: true
+  def sum_type?(n, :abundant) when is_integer(n) and n > 28_123, do: true
 
   def sum_type?(n, _sum_type) when is_integer(n) and n < 2, do: false
 

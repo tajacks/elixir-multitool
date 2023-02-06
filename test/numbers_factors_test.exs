@@ -1,5 +1,4 @@
 defmodule Multitool.NumbersTest.FactorsTest do
-  
   use ExUnit.Case, async: true
 
   doctest Multitool.Numbers.Factors, import: true
@@ -20,18 +19,18 @@ defmodule Multitool.NumbersTest.FactorsTest do
 
   test "can compute aliquot sum of positive number" do
     assert aliquot_sum(284) === 220
-    assert aliquot_sum(10000) === 14211 
+    assert aliquot_sum(10_000) === 14_211
   end
 
   test "can classify numbers of all types" do
     assert classify(100) === :abundant
     assert classify(14) === :deficient
-    assert classify(8589869056) === :perfect
+    assert classify(8_589_869_056) === :perfect
   end
 
-  test "sums of type with invalid number is empty" do 
+  test "sums of type with invalid number is empty" do
     assert sums_of_type(-5, :abundant) === []
-    assert sums_of_type(-50000, :deficient) === []
+    assert sums_of_type(-50_000, :deficient) === []
     assert sums_of_type(0, :perfect) === []
   end
 
@@ -50,16 +49,16 @@ defmodule Multitool.NumbersTest.FactorsTest do
   end
 
   test "all sums above 28123 can be represented as abundant sum" do
-    x = 28563..679034
-    assert Enum.to_list(x) === sums_in(x, :abundant) 
+    x = 28_563..679_034
+    assert Enum.to_list(x) === sums_in(x, :abundant)
   end
 
   test "range spans guaranteed abundant sums" do
-    assert sums_in(28122..28124, :abundant) == [28122, 28123, 28124] 
+    assert sums_in(28_122..28_124, :abundant) == [28_122, 28_123, 28_124]
   end
-  
+
   test "sum type abundant above 28123 is always true" do
-    assert 28124..50000 |> Enum.all?(&sum_type?(&1, :abundant))
+    assert 28_124..50_000 |> Enum.all?(&sum_type?(&1, :abundant))
   end
 
   test "sum type of any kind below 1 is false" do
@@ -73,7 +72,4 @@ defmodule Multitool.NumbersTest.FactorsTest do
     assert sum_type?(12, :perfect) === true
     assert sum_type?(14, :deficient) === true
   end
-
-
-
 end

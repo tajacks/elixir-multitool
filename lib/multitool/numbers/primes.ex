@@ -42,13 +42,16 @@ defmodule Multitool.Numbers.Primes do
         false
 
       true ->
-        Stream.unfold(5, fn x ->
-          cond do
-            x * x > n -> nil
-            true -> {x, x + 6}
-          end
-        end)
+        Stream.unfold(5, &increment_six_or_terminate(&1, n))
         |> Enum.all?(&(rem(n, &1) != 0 && rem(n, &1 + 2) != 0))
+    end
+  end
+
+  defp increment_six_or_terminate(x, n) do
+    if x * x > n do
+      nil
+    else
+      {x, x + 6}
     end
   end
 
@@ -127,9 +130,10 @@ defmodule Multitool.Numbers.Primes do
   @doc since: "1.3.0"
   def primes_before(n) when is_integer(n) do
     Stream.unfold(n - 1, fn x ->
-      cond do
-        x < 2 -> nil
-        true -> {x, x - 1}
+      if x < 2 do
+        nil
+      else
+        {x, x - 1}
       end
     end)
     |> Stream.filter(&prime?/1)

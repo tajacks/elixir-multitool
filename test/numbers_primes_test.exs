@@ -11,7 +11,7 @@ defmodule Multitool.NumbersTest.PrimesTest do
   end
 
   test "prime numbers larger than three are correct" do
-    assert prime?(22619) === true
+    assert prime?(22_619) === true
     assert prime?(5849) === true
     assert prime?(5) === true
     assert prime?(14) === false
