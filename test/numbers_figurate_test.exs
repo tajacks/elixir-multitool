@@ -5,5 +5,4 @@ defmodule Multitool.NumbersTest.FigurateTest do
 
   import Multitool.Numbers.Figurate
 
-  # ToDo - Comprehensive figurate tests
 end
