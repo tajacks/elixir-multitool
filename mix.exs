@@ -7,11 +7,18 @@ defmodule Multitool.MixProject do
       description: "A collection of functions useful for programming challenges and beyond",
       source_url: "https://github.com/tajacks/elixir-multitool",
       homepage_url: "https://github.com/tajacks/elixir-multitool",
-      version: "0.3.2",
+      version: "0.3.3",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      package: package()
+      package: package(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -24,7 +31,8 @@ defmodule Multitool.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
