@@ -1,5 +1,4 @@
 defmodule Multitool.NumbersTest.TriangularTest do
-  
   use ExUnit.Case, async: true
 
   doctest Multitool.Numbers.Triangular, import: true
@@ -19,6 +18,4 @@ defmodule Multitool.NumbersTest.TriangularTest do
     assert triangle_nums(0) == []
     assert triangle_nums(5) == [1, 3, 6, 10, 15]
   end
-
-
 end
