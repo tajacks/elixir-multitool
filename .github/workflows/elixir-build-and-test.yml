@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MIX_ENV: test
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
         elixir: ["1.13.4"]
