@@ -72,4 +72,11 @@ defmodule Multitool.NumbersTest.FactorsTest do
     assert sum_type?(12, :perfect) === true
     assert sum_type?(14, :deficient) === true
   end
+
+  test "can classify amicable numbers" do
+    assert amicable?(220, 284) === true
+    assert amicable?(197, 156) === false
+    assert amicable?(-220, 284) === false
+    assert amicable?(220, 220) === false
+  end
 end
