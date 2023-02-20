@@ -12,7 +12,7 @@ This package can be installed by adding `multitool` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:multitool, "~> 0.3.2"}
+    {:multitool, "~> 0.3.4"}
   ]
 end
 ```
