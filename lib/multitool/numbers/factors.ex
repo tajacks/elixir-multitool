@@ -22,7 +22,7 @@ defmodule Multitool.Numbers.Factors do
 
       n: The number to retrieve factors of 
 
-  ## Examples
+
 
       iex> factors_of(3)
       [1, 3]
@@ -54,6 +54,7 @@ defmodule Multitool.Numbers.Factors do
       iex> aliquot_sum(100)
       117
   """
+  @doc since: "0.3.0"
   def aliquot_sum(n) when is_integer(n) and n > 0, do: Enum.sum(factors_of(n)) - n
 
   @doc """
@@ -75,6 +76,7 @@ defmodule Multitool.Numbers.Factors do
       iex> classify(28)
       :perfect
   """
+  @doc since: "0.3.0"
   def classify(n) when is_integer(n) and n > 0 do
     case aliquot_sum(n) do
       ^n -> :perfect
@@ -105,6 +107,7 @@ defmodule Multitool.Numbers.Factors do
       iex> sums_of_type(12, :perfect)
       [{6, 6}]
   """
+  @doc since: "0.3.0"
   def sums_of_type(n, sum_type) when is_integer(n) and n > 0 and is_atom(sum_type) do
     Stream.filter(1..(n - 1), &(classify(&1) == sum_type))
     |> Stream.filter(&(classify(n - &1) == sum_type))
@@ -140,6 +143,7 @@ defmodule Multitool.Numbers.Factors do
       iex> sums_in(1..1000, :perfect)
       [12, 34, 56, 502, 524, 992]
   """
+  @doc since: "0.3.0"
   def sums_in(%Range{} = range, sum_type) do
     sum_pool = _sums_pool_helper(range, sum_type)
 
@@ -172,11 +176,37 @@ defmodule Multitool.Numbers.Factors do
       iex> sum_type?(14, :deficient)
       true
   """
+  @doc since: "0.3.0"
   def sum_type?(n, sum_type) when is_integer(n) do
     Stream.filter(1..(n - 1), &(classify(&1) == sum_type))
     |> Stream.filter(&(classify(n - &1) == sum_type))
     |> Enum.any?()
   end
+
+  def amicable?(x, y) when x == y, do: false
+
+  def amicable?(x, y) when is_integer(x) and is_integer(y) and (x < 220 or y < 220), do: false
+
+  @doc """
+  Given two integers, determines if the proper divisors of each sum to equal the other number
+
+  Always returns true if false is either number is less than 220 or equal to each other
+
+  ## Parameters
+
+      x: The integer to check for amicability with y 
+      y: The integer to check for amicability with x
+
+  ## Examples
+
+      iex> amicable?(192, 315)
+      false
+      iex> amicable?(220, 284)
+      true
+  """
+  @doc since: "0.3.4"
+  def amicable?(x, y) when is_integer(x) and is_integer(y),
+    do: aliquot_sum(x) == y and aliquot_sum(y) == x
 
   defp _sums_pool_helper(%Range{} = range, sum_type) do
     1..range.last
